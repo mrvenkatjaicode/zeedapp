@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'home/homescreen.dart';
+
 class DashboardHomeScreen extends StatefulWidget {
   const DashboardHomeScreen({super.key});
 
@@ -10,7 +12,7 @@ class DashboardHomeScreen extends StatefulWidget {
 class _DashboardHomeScreenState extends State<DashboardHomeScreen> {
   int selectedIndex = 0;
   final widgetOptions = [
-    const Text('Home'),
+    HomeScreen(),
     const Text('Stores'),
     const Text('My Plans'),
     const Text('Gift Cards'),

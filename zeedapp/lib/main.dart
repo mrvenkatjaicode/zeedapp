@@ -1,10 +1,9 @@
-// ignore_for_file: depend_on_referenced_packages
-
 import 'package:country_code_picker/country_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'dashboard/dashboard_home_screen.dart';
 import 'splashscreen/splash_screen.dart';
 
 void main() async {
@@ -99,7 +98,7 @@ class MyApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      home: const SplashScreen(),
+      home: const DashboardHomeScreen(),
     );
   }
 }
