@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:carousel_indicator/carousel_indicator.dart';
 
@@ -83,41 +85,31 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<Widget> cslider = [
-    Container(
-      margin: EdgeInsets.symmetric(horizontal: 5),
-      decoration: BoxDecoration(
-          color: Colors.green,
-          //  border: Border.all(),
-          borderRadius: BorderRadius.all(Radius.circular(15))),
-      // height: MediaQuery.of(context).size.height * 0.145,
-      // //width: MediaQuery.of(context).size.width / 2.2,
+    ClipRRect(
+      borderRadius: BorderRadius.circular(15),
+      child: Image.asset(
+        "assets/images/banner_1.png",
+        fit: BoxFit.cover,
+      ),
     ),
     Container(
-      margin: EdgeInsets.symmetric(horizontal: 5),
-      decoration: BoxDecoration(
-          color: Colors.red,
-          //  border: Border.all(),
-          borderRadius: BorderRadius.all(Radius.circular(15))),
-      // height: MediaQuery.of(context).size.height * 0.145,
-      // //width: MediaQuery.of(context).size.width / 2.2,
-    ),
-    Container(
-      margin: EdgeInsets.symmetric(horizontal: 5),
-      decoration: BoxDecoration(
-          color: Colors.grey,
-          //  border: Border.all(),
-          borderRadius: BorderRadius.all(Radius.circular(15))),
-      // height: MediaQuery.of(context).size.height * 0.145,
-      // //width: MediaQuery.of(context).size.width / 2.2,
-    ),
-    Container(
-      margin: EdgeInsets.symmetric(horizontal: 5),
-      decoration: BoxDecoration(
-          color: Colors.blue,
-          //  border: Border.all(),
-          borderRadius: BorderRadius.all(Radius.circular(15))),
-      // height: MediaQuery.of(context).size.height * 0.145,
-      // //width: MediaQuery.of(context).size.width / 2.2,
+        margin: const EdgeInsets.symmetric(horizontal: 5),
+        decoration: const BoxDecoration(
+            color: Colors.grey,
+            //  border: Border.all(),
+            borderRadius: BorderRadius.all(Radius.circular(15))),
+        // height: MediaQuery.of(context).size.height * 0.145,
+        // //width: MediaQuery.of(context).size.width / 2.2,
+        child: Image.asset(
+          "assets/images/banner_3.png",
+          fit: BoxFit.cover,
+        )),
+    ClipRRect(
+      borderRadius: BorderRadius.circular(15),
+      child: Image.asset(
+        "assets/images/banner_3.png",
+        fit: BoxFit.cover,
+      ),
     ),
   ];
 
@@ -160,14 +152,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         Row(
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.location_on,
                               color: Colors.deepOrange,
                             ),
                             Text(
                               location,
                               maxLines: 1,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.bold),
                             ),
                           ],
@@ -188,7 +180,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             builder: (context) => const ProfileScreen()),
                       );
                     },
-                    child: CircleAvatar(
+                    child: const CircleAvatar(
                       child: Icon(Icons.person_outline),
                     ),
                   )
@@ -201,7 +193,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Container(
                 child: TextFormField(
                     decoration: InputDecoration(
-                  prefixIcon: Icon(
+                  prefixIcon: const Icon(
                     Icons.search,
                     color: Colors.black,
                   ),
@@ -233,7 +225,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 index: currentPos,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             // Padding(
@@ -294,9 +286,17 @@ class _HomeScreenState extends State<HomeScreen> {
                         );
                       },
                       child: Container(
-                        decoration: BoxDecoration(
-                            color: Colors.green,
+                        decoration: const BoxDecoration(
+                            // color: Colors.green,
                             //  border: Border.all(),
+                            gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: <Color>[
+                                Color(0xffFEF6DC),
+                                Color(0xffFEE4CC),
+                              ],
+                            ),
                             borderRadius:
                                 BorderRadius.all(Radius.circular(15))),
                         height: MediaQuery.of(context).size.height * 0.145,
@@ -305,10 +305,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.all(15.0),
+                              padding: const EdgeInsets.all(20.0),
                               child: Column(
                                 children: [
-                                  Text(
+                                  const Text(
                                     "Gold",
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
@@ -318,14 +318,16 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.all(15.0),
+                              padding: const EdgeInsets.all(10.0),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  Image.network(
-                                    "https://i.pinimg.com/736x/47/42/c7/4742c712595010ebb6cb6bb0aeff5aaf.jpg",
-                                    height: 80,
-                                    width: 80,
+                                  Image.asset(
+                                    "assets/images/gold.png",
+                                    height: MediaQuery.of(context).size.height *
+                                        0.11,
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.2,
                                   ),
                                 ],
                               ),
@@ -335,7 +337,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Expanded(
@@ -350,8 +352,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         );
                       },
                       child: Container(
-                        decoration: BoxDecoration(
-                            color: Colors.red,
+                        decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: <Color>[
+                                Color(0xffF3F3F3),
+                                Color(0xffE5F6FC),
+                              ],
+                            ),
+                            // color: Colors.red,
                             //  border: Border.all(),
                             borderRadius:
                                 BorderRadius.all(Radius.circular(15))),
@@ -361,10 +371,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.all(15.0),
+                              padding: const EdgeInsets.only(top: 20, left: 20),
                               child: Column(
                                 children: [
-                                  Text(
+                                  const Text(
                                     "Diamond",
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
@@ -375,10 +385,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             Column(
                               children: [
-                                Image.network(
-                                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx9r7IM-M5ixlX2HPkj-sm6Uzq5ck68so0yaa7JcHQzVXJ9GGauBenepdo1wNNtkzfUuY&usqp=CAU",
-                                  height: 80,
-                                  width: 80,
+                                Image.asset(
+                                  "assets/images/diamond.png",
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.1,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.2,
                                 ),
                               ],
                             )
@@ -397,37 +409,130 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Expanded(
                     child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.amber,
+                      decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: <Color>[
+                              Color(0xffFFEFEB),
+                              Color(0xffF1EEFF),
+                            ],
+                          ),
                           //  border: Border.all(),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       height: MediaQuery.of(context).size.height * 0.11,
                       //width: MediaQuery.of(context).size.width / 2.2,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 15, top: 15),
+                            child: Row(
+                              children: [
+                                Text(
+                                  "Platinum",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Image.asset("assets/images/platinum.png"),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Expanded(
                       child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.red,
-                        //  border: Border.all(),
+                    decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: <Color>[
+                            Color(0xffE5E2FD),
+                            Color(0xffF1BDDE),
+                          ],
+                        ), //  border: Border.all(),
                         borderRadius: BorderRadius.all(Radius.circular(15))),
                     height: MediaQuery.of(context).size.height * 0.11,
                     //width: MediaQuery.of(context).size.width / 2.2,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15, top: 15),
+                          child: Row(
+                            children: [
+                              Text(
+                                "Silver",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 15),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Image.asset("assets/images/silver.png"),
+                          ],
+                        )
+                      ],
+                    ),
                   )),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Expanded(
                     child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.black,
-                          //  border: Border.all(),
+                      decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: <Color>[
+                              Color(0xffFEEADC),
+                              Color(0xffFFE8F5),
+                            ],
+                          ), //  border: Border.all(),
                           borderRadius: BorderRadius.all(Radius.circular(15))),
                       height: MediaQuery.of(context).size.height * 0.11,
                       //width: MediaQuery.of(context).size.width / 2.2,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 15, top: 15),
+                            child: Row(
+                              children: [
+                                Text(
+                                  "Gold Coin",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Image.asset("assets/images/gold_coin.png"),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -437,36 +542,167 @@ class _HomeScreenState extends State<HomeScreen> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     width: 15,
                   ),
                   Container(
-                    decoration: BoxDecoration(
-                        color: Colors.black,
-                        //  border: Border.all(),
+                    decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: <Color>[
+                            Color(0xffBB558B),
+                            Color(0xffE86D6D),
+                          ],
+                        ), //  border: Border.all(),
                         borderRadius: BorderRadius.all(Radius.circular(15))),
                     height: MediaQuery.of(context).size.height * 0.21,
                     width: MediaQuery.of(context).size.width / 2,
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.only(left: 15, top: 15, bottom: 15),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Color.fromARGB(255, 185, 99, 145),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 20, right: 20, top: 10, bottom: 10),
+                              child: Text(
+                                "Offer zone",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Flat",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  Text(
+                                    "10% off",
+                                    style: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                  Text(
+                                    "Savings plan",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  Text(
+                                    "starts from",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ],
+                              ),
+                              Image.asset(
+                                "assets/images/platinum.png",
+                                fit: BoxFit.fitHeight,
+                                height: 100,
+                              ),
+                            ],
+                          ),
+                          Text(
+                            "*conditions apply",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Container(
-                    decoration: BoxDecoration(
-                        color: Colors.black,
-                        //  border: Border.all(),
+                    decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: <Color>[
+                            Color(0xff5570BB),
+                            Color(0xff452797),
+                          ],
+                        ), //  border: Border.all(),
                         borderRadius: BorderRadius.all(Radius.circular(15))),
                     height: MediaQuery.of(context).size.height * 0.21,
                     width: MediaQuery.of(context).size.width / 2,
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.only(left: 15, top: 15, bottom: 15),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Color.fromARGB(255, 185, 99, 145),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 20, right: 20, top: 10, bottom: 10),
+                              child: Text(
+                                "Savings",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Savings plan",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  Text(
+                                    "starts from",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  Text(
+                                    "500/-",
+                                    style: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                ],
+                              ),
+                              Image.asset(
+                                "assets/images/silver_necklece.png",
+                                fit: BoxFit.fitHeight,
+                                //   height: 100,
+                              ),
+                            ],
+                          ),
+                          Text(
+                            "*conditions apply",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
             ),
-            ElevatedButton(
-                onPressed: () {
-                  fetchlocation();
-                },
-                child: Text("data"))
           ],
         ),
       ),

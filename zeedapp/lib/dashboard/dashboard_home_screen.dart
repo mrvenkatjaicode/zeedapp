@@ -21,6 +21,7 @@ class _DashboardHomeScreenState extends State<DashboardHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffFFFFFF),
       body: Center(
         child: widgetOptions.elementAt(selectedIndex),
       ),

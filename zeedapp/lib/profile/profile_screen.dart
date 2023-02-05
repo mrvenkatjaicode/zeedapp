@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:zeedapp/profile/manage_profile_scree.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -66,6 +67,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
           Column(
             children: [
               ListTile(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ManageProfileScreen()));
+                },
                 leading: CircleAvatar(
                   backgroundColor: Colors.amber.shade100,
                   child: Icon(
@@ -78,7 +85,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 trailing: IconButton(
-                    onPressed: () {}, icon: Icon(Icons.arrow_forward_ios)),
+                    onPressed: null, icon: Icon(Icons.arrow_forward_ios)),
               ),
               SizedBox(
                 height: 20,

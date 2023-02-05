@@ -19,8 +19,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primarySwatch: Colors.deepOrange,
-      ),
+          primarySwatch: Colors.deepOrange,
+          sliderTheme: SliderThemeData(
+            showValueIndicator: ShowValueIndicator.always,
+            valueIndicatorColor: Colors.deepOrange,
+          )),
       supportedLocales: const [
         Locale("af"),
         Locale("am"),
