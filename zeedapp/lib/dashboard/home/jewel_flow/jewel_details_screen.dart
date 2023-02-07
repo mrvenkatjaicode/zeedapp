@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:zeedapp/dashboard/home/jewel_flow/join_plan_screen.dart';
+import 'package:zeedapp/dashboard/payment/choose_payment_screen.dart';
 
 import '../../../const/constant.dart';
 
@@ -403,7 +405,14 @@ class _JewelDetailScreenState extends State<JewelDetailScreen> {
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: ElevatedButton(
-                          onPressed: () {}, child: Text("Join Plan")),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const JoinPlanScreen()),
+                            );
+                          },
+                          child: Text("Join Plan")),
                     ))
               ],
             )),

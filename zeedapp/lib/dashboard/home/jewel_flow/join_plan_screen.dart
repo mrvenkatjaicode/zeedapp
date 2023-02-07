@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:zeedapp/dashboard/payment/choose_payment_screen.dart';
 
 import '../../../const/constant.dart';
 
@@ -15,7 +16,15 @@ class _JoinPlanScreenState extends State<JoinPlanScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: Colors.white,
+        title: Text(
+          "Join Plan",
+          style: TextStyle(
+              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18),
+        ),
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -25,54 +34,6 @@ class _JoinPlanScreenState extends State<JoinPlanScreen> {
                 children: [
                   SizedBox(
                     height: 20,
-                  ),
-                  Stack(
-                    children: [
-                      Center(
-                        child: Container(
-                          width: 100.0,
-                          height: 100.0,
-                          decoration: BoxDecoration(
-                            color: const Color(0xff7c94b6),
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                  'http://i.imgur.com/QSev0hg.jpg'),
-                              fit: BoxFit.cover,
-                            ),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(50.0)),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        right: 160,
-                        child: Align(
-                          // alignment: Alignment.bottomCenter,
-                          child: Container(
-                              padding: const EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                color: Colors.grey[200],
-                                borderRadius: BorderRadius.circular(20.0),
-                                border: Border.all(
-                                    color: Colors.grey,
-                                    style: BorderStyle.solid,
-                                    width: 0.80),
-                              ),
-                              child: Icon(Icons.edit)),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Text(
-                        "Arun Kumar",
-                        style: TextStyle(
-                            fontSize: 25, fontWeight: FontWeight.bold),
-                      ),
-                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(15.0),
@@ -125,7 +86,15 @@ class _JoinPlanScreenState extends State<JoinPlanScreen> {
               color: Colors.white,
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: ElevatedButton(onPressed: () {}, child: Text("Update")),
+                child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ChoosePaymentScreen()),
+                      );
+                    },
+                    child: Text("Join")),
               ))
         ],
       ),
