@@ -1,4 +1,3 @@
-
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:zeedapp/signin/signup/sign_in_screen.dart';
@@ -34,7 +33,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image.asset(
-                "assets/images/images.png",
+                "assets/images/app_icon.png",
                 height: 50,
                 width: 50,
               ),
@@ -176,26 +175,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text("By continuing I agree the"),
-                  Text(
-                    " terms & conditions",
-                    style: TextStyle(
-                      color: Colors.deepOrange,
-                      decoration: TextDecoration.underline,
+              FittedBox(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text("By continuing I agree the"),
+                    Text(
+                      " terms & conditions",
+                      style: TextStyle(
+                        color: Colors.deepOrange,
+                        decoration: TextDecoration.underline,
+                      ),
                     ),
-                  ),
-                  Text(" and"),
-                  Text(
-                    " privacy policy",
-                    style: TextStyle(
-                      color: Colors.deepOrange,
-                      decoration: TextDecoration.underline,
+                    Text(" and"),
+                    Text(
+                      " privacy policy",
+                      style: TextStyle(
+                        color: Colors.deepOrange,
+                        decoration: TextDecoration.underline,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               Container(
                 margin: const EdgeInsets.only(top: 20, bottom: 20),
@@ -236,5 +237,4 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
     );
   }
-
 }

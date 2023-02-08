@@ -2,7 +2,6 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:zeedapp/signin/signup/sign_in_screen.dart';
 
-
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
@@ -14,6 +13,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -28,7 +28,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Image.asset(
-                      "assets/images/images.png",
+                      "assets/images/app_icon.png",
                       height: 50,
                       width: 50,
                     ),
@@ -98,26 +98,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ],
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Text("By continuing I agree the"),
-                        Text(
-                          " terms & conditions",
-                          style: TextStyle(
-                            color: Colors.deepOrange,
-                            decoration: TextDecoration.underline,
+                    FittedBox(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Text("By continuing I agree the"),
+                          Text(
+                            " terms & conditions",
+                            style: TextStyle(
+                              color: Colors.deepOrange,
+                              decoration: TextDecoration.underline,
+                            ),
                           ),
-                        ),
-                        Text(" and"),
-                        Text(
-                          " privacy policy",
-                          style: TextStyle(
-                            color: Colors.deepOrange,
-                            decoration: TextDecoration.underline,
+                          Text(" and"),
+                          Text(
+                            " privacy policy",
+                            style: TextStyle(
+                              color: Colors.deepOrange,
+                              decoration: TextDecoration.underline,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     Container(
                       margin: const EdgeInsets.only(top: 20, bottom: 20),
@@ -131,16 +133,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     builder: (context) =>
                                         const OtpVerifyScreen()),
                               ); */
-                          }, child: const Text("Get OTP")),
+                          },
+                          child: const Text("Get OTP")),
                     ),
                     GestureDetector(
-                      onTap: (){
-                         Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const SignInScreen()),
-                              );
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SignInScreen()),
+                        );
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,

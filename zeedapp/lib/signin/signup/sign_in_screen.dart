@@ -59,7 +59,10 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+
     return Scaffold(
+      backgroundColor: Colors.white,
       body: isloading
           ? const Center(
               child: CircularProgressIndicator(),
@@ -67,7 +70,9 @@ class _SignInScreenState extends State<SignInScreen> {
           : SingleChildScrollView(
               child: Column(
                 children: [
-                  Image.asset("assets/images/white_bangle.jpg"),
+                  Image.asset(
+                    "assets/images/white_bangle.jpg",
+                  ),
                   Container(
                     color: Colors.white,
                     child: Padding(
@@ -76,7 +81,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Image.asset(
-                            "assets/images/images.png",
+                            "assets/images/app_icon.png",
                             height: 50,
                             width: 50,
                           ),
@@ -152,26 +157,28 @@ class _SignInScreenState extends State<SignInScreen> {
                               ],
                             ),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
-                              Text("By continuing I agree the"),
-                              Text(
-                                " terms & conditions",
-                                style: TextStyle(
-                                  color: Colors.deepOrange,
-                                  decoration: TextDecoration.underline,
+                          FittedBox(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                                Text("By continuing I agree the"),
+                                Text(
+                                  " terms & conditions",
+                                  style: TextStyle(
+                                    color: Colors.deepOrange,
+                                    decoration: TextDecoration.underline,
+                                  ),
                                 ),
-                              ),
-                              Text(" and"),
-                              Text(
-                                " privacy policy",
-                                style: TextStyle(
-                                  color: Colors.deepOrange,
-                                  decoration: TextDecoration.underline,
+                                Text(" and"),
+                                Text(
+                                  " privacy policy",
+                                  style: TextStyle(
+                                    color: Colors.deepOrange,
+                                    decoration: TextDecoration.underline,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                           Container(
                             margin: const EdgeInsets.only(top: 20, bottom: 20),

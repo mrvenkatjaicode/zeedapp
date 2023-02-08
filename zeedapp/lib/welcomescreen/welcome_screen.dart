@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zeedapp/signin/signup/sign_in_screen.dart';
+import 'package:sizer/sizer.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -11,6 +12,8 @@ class WelcomeScreen extends StatefulWidget {
 class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -40,7 +43,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Image.asset(
-                        "assets/images/images.png",
+                        "assets/images/app_icon.png",
                         height: 50,
                         width: 50,
                       ),

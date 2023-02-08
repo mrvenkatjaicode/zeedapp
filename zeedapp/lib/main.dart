@@ -101,7 +101,7 @@ class MyApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      home: const DashboardHomeScreen(),
+      home: const SplashScreen(),
     );
   }
 }
