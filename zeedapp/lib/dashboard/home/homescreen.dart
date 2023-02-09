@@ -9,6 +9,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:zeedapp/dashboard/home/jewel_flow/jewel_store_screen.dart';
 import 'package:zeedapp/profile/profile_screen.dart';
 
+import 'jewel_flow/sample.dart';
 import 'model_homescreen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -404,46 +405,56 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Row(
                   children: [
                     Expanded(
-                      child: Container(
-                        decoration: const BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: <Color>[
-                                Color(0xffFFEFEB),
-                                Color(0xffF1EEFF),
-                              ],
-                            ),
-                            //  border: Border.all(),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15))),
-                        //height: MediaQuery.of(context).size.height * 0.11,
-                        //width: MediaQuery.of(context).size.width / 2.2,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 15, top: 15),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    "Platinum",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 14),
-                                  ),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ToggleButton()),
+                          );
+                        },
+                        child: Container(
+                          decoration: const BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: <Color>[
+                                  Color(0xffFFEFEB),
+                                  Color(0xffF1EEFF),
                                 ],
                               ),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Image.asset(
-                                  "assets/images/platinum.png",
+                              //  border: Border.all(),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15))),
+                          //height: MediaQuery.of(context).size.height * 0.11,
+                          //width: MediaQuery.of(context).size.width / 2.2,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 15, top: 15),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "Platinum",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            )
-                          ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Image.asset(
+                                    "assets/images/platinum.png",
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
