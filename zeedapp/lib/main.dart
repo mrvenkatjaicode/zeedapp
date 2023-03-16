@@ -1,9 +1,10 @@
-import 'package:country_code_picker/country_localizations.dart';
+//import 'package:country_code_picker/country_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'dashboard/dashboard_home_screen.dart';
+import 'dashboard/home/homescreen.dart';
 import 'splashscreen/splash_screen.dart';
 
 void main() async {
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: Colors.deepOrange,
           sliderTheme: SliderThemeData(
@@ -97,11 +99,11 @@ class MyApp extends StatelessWidget {
         Locale("zh")
       ],
       localizationsDelegates: const [
-        CountryLocalizations.delegate,
+        //CountryLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      home: const SplashScreen(),
+      home: const DashboardHomeScreen(),
     );
   }
 }

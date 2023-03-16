@@ -1,4 +1,4 @@
-import 'package:country_code_picker/country_code_picker.dart';
+//import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:zeedapp/signin/signup/sign_in_screen.dart';
 
@@ -76,10 +76,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       child: Row(
                         children: [
-                          CountryCodePicker(
-                            onChanged: print,
-                            initialSelection: '+91',
-                          ),
+                          // CountryCodePicker(
+                          //   onChanged: print,
+                          //   initialSelection: '+91',
+                          // ),
                           Expanded(
                             flex: 3,
                             child: Padding(

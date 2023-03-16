@@ -6,6 +6,7 @@ import 'package:carousel_indicator/carousel_indicator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:zeedapp/const/constant.dart';
 import 'package:zeedapp/dashboard/home/jewel_flow/jewel_store_screen.dart';
 import 'package:zeedapp/profile/profile_screen.dart';
 
@@ -57,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
     print(placemarks);
     place = placemarks[0];
     setState(() {
-      location = '${place!.subLocality}, ${place!.locality}';
+      location = ' ${place!.subLocality}  ${place!.locality}';
       sublocation =
           '${place!.street}, ${place!.subLocality}, ${place!.locality}, ${place!.postalCode}, ${place!.country}';
     });
@@ -85,30 +86,32 @@ class _HomeScreenState extends State<HomeScreen> {
     // return hitrtoapi(context, place!.locality!);
   }
 
+  List<Widget> searchtext = [
+    Text(
+      "     Text one",
+      style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
+    ),
+    Text(
+      "     Text two",
+      style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
+    ),
+    Text(
+      "     Text three",
+      style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
+    ),
+  ];
   List<Widget> cslider = [
     ClipRRect(
-      borderRadius: BorderRadius.circular(15),
+      borderRadius: BorderRadius.circular(5),
       child: Image.asset(
-        "assets/images/banner_1.png",
+        "assets/images/slideone.png",
         fit: BoxFit.cover,
       ),
     ),
-    Container(
-        margin: const EdgeInsets.symmetric(horizontal: 5),
-        decoration: const BoxDecoration(
-            color: Colors.grey,
-            //  border: Border.all(),
-            borderRadius: BorderRadius.all(Radius.circular(15))),
-        // height: MediaQuery.of(context).size.height * 0.145,
-        // //width: MediaQuery.of(context).size.width / 2.2,
-        child: Image.asset(
-          "assets/images/banner_3.png",
-          fit: BoxFit.cover,
-        )),
     ClipRRect(
-      borderRadius: BorderRadius.circular(15),
+      borderRadius: BorderRadius.circular(5),
       child: Image.asset(
-        "assets/images/banner_3.png",
+        "assets/images/slideone.png",
         fit: BoxFit.cover,
       ),
     ),
@@ -140,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
               padding: const EdgeInsets.only(
@@ -149,70 +152,183 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    child: Row(
                       children: [
-                        Row(
-                          children: [
-                            const Icon(
-                              Icons.location_on,
-                              color: Colors.deepOrange,
-                            ),
-                            Text(
-                              location,
-                              maxLines: 1,
-                              style: const TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
-                          ],
+                        Image.asset(
+                          "assets/icons/location.png",
+                          height: 12,
                         ),
                         Text(
-                          sublocation,
+                          location,
                           maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        )
+                          style: const TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w400),
+                        ),
+                        Icon(Icons.keyboard_arrow_down)
                       ],
                     ),
                   ),
                   InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const ProfileScreen()),
-                      );
-                    },
-                    child: const CircleAvatar(
-                      child: Icon(Icons.person_outline),
-                    ),
-                  )
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ProfileScreen()),
+                        );
+                      },
+                      child: Container(
+                        height: 34,
+                        width: 34,
+                        decoration: BoxDecoration(
+                            color: maincolor,
+                            borderRadius: BorderRadius.circular(9)),
+                        child: Center(
+                            child: Image.asset("assets/icons/profile.png")),
+                      ))
                 ],
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(
-                  top: 15, left: 15, right: 15, bottom: 20),
+                  top: 15, left: 15, right: 15, bottom: 4),
               child: Container(
                 height: 50,
-                child: TextFormField(
-                    decoration: InputDecoration(
-                  prefixIcon: const Icon(
-                    Icons.search,
-                    color: Colors.black,
-                  ),
-                  hintText: "Search stores, plans",
-                  fillColor: Colors.grey.shade300,
-                  filled: true,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    borderSide: BorderSide.none,
-                  ),
-                )),
+                child: Stack(
+                  children: [
+                    TextFormField(
+                        onTap: () {},
+                        decoration: InputDecoration(
+                          suffixIcon: Image.asset("assets/icons/search.png"),
+                          //hintText: "Search stores, plans",
+                          fillColor: Colors.grey.shade300,
+                          filled: true,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: BorderSide.none,
+                          ),
+                        )),
+                    Positioned.fill(
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: CarouselSlider(
+                            options: CarouselOptions(
+                                autoPlayInterval: Duration(seconds: 2),
+                                scrollDirection: Axis.vertical,
+                                // height: 228,
+                                autoPlay: true,
+                                onPageChanged: (index, reason) {
+                                  setState(() {
+                                    currentPos = index;
+                                  });
+                                }),
+                            items: searchtext),
+                      ),
+                    ),
+                  ],
+                ),
               ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      // height: 85,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          gradient: LinearGradient(
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                              colors: [
+                                Color(0xffFC772A),
+                                Colors.white,
+                              ])),
+                      child: Padding(
+                        padding: const EdgeInsets.all(1.0),
+                        child: Container(
+                          height: 85,
+                          decoration: BoxDecoration(
+                              color: greygreen,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "My Gold",
+                                style: TextStyle(
+                                    height: 1.3,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              Text("8 gram",
+                                  style: TextStyle(
+                                      height: 1.3,
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.w700)),
+                              Text("22 karat",
+                                  style: TextStyle(
+                                      height: 1.3,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500)),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 4,
+                  ),
+                  Expanded(
+                    child: Container(
+                      // height: 85,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          gradient: LinearGradient(
+                              begin: Alignment.centerRight,
+                              end: Alignment.centerLeft,
+                              colors: [
+                                Color(0xffFC772A),
+                                Colors.white,
+                              ])),
+                      child: Padding(
+                        padding: const EdgeInsets.all(1.0),
+                        child: Container(
+                          height: 85,
+                          decoration: BoxDecoration(
+                              color: greygreen,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("\u{20B9} 42000",
+                                  style: TextStyle(
+                                      height: 1.3,
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.w700)),
+                              Text("Total Amount",
+                                  style: TextStyle(
+                                      height: 1.3,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500)),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 5,
             ),
             CarouselSlider(
                 options: CarouselOptions(
-                    height: MediaQuery.of(context).size.height * 0.199,
+                    viewportFraction: 0.77,
+                    height: 228,
                     autoPlay: true,
                     onPageChanged: (index, reason) {
                       setState(() {
@@ -220,16 +336,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       });
                     }),
                 items: cslider),
-            Center(
-              child: CarouselIndicator(
-                color: Colors.grey,
-                activeColor: Colors.deepOrange,
-                count: cslider.length,
-                index: currentPos,
-              ),
-            ),
+            // Center(
+            //   child: CarouselIndicator(
+            //     color: Colors.grey,
+            //     activeColor: Colors.deepOrange,
+            //     count: cslider.length,
+            //     index: currentPos,
+            //   ),
+            // ),
             const SizedBox(
-              height: 10,
+              height: 20,
             ),
             // Padding(
             //   padding: const EdgeInsets.all(15.0),
@@ -273,6 +389,210 @@ class _HomeScreenState extends State<HomeScreen> {
             //     ),
             //   ),
             // ),
+            Text(
+              "Live Gold Rate.",
+              style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: berkshireSwash),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      // height: 85,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          gradient: LinearGradient(
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                              colors: [
+                                Color(0xffFC772A),
+                                Colors.white,
+                              ])),
+                      child: Padding(
+                        padding: const EdgeInsets.all(1.0),
+                        child: Container(
+                          height: 85,
+                          decoration: BoxDecoration(
+                              color: greygreen,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "1 gram",
+                                style: TextStyle(
+                                    height: 1.3,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              Text("5816.00",
+                                  style: TextStyle(
+                                      height: 1.3,
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.w700)),
+                              Text("24 karat",
+                                  style: TextStyle(
+                                      height: 1.3,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500)),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 4,
+                  ),
+                  Expanded(
+                    child: Container(
+                      // height: 85,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          gradient: LinearGradient(
+                              begin: Alignment.centerRight,
+                              end: Alignment.centerLeft,
+                              colors: [
+                                Color(0xffFC772A),
+                                Colors.white,
+                              ])),
+                      child: Padding(
+                        padding: const EdgeInsets.all(1.0),
+                        child: Container(
+                          height: 85,
+                          decoration: BoxDecoration(
+                              color: greygreen,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "1 gram",
+                                style: TextStyle(
+                                    height: 1.3,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              Text("5416.00",
+                                  style: TextStyle(
+                                      height: 1.3,
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.w700)),
+                              Text("22 karat",
+                                  style: TextStyle(
+                                      height: 1.3,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500)),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(
+              "Curated plans.",
+              style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: berkshireSwash),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 20, left: 15, right: 15),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const JewelStoreScreen(
+                                    title: "Gold",
+                                  )),
+                        );
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: greycolor,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(15))),
+                        height: 133,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Image.asset(
+                              "assets/images/gold.png",
+                              height: 79,
+                              width: 84,
+                            ),
+                            Text(
+                              "Gold Saving Plan",
+                              style: TextStyle(
+                                  fontFamily: dMSans,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 18,
+                  ),
+                  Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const JewelStoreScreen(
+                                    title: "Gold",
+                                  )),
+                        );
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: greycolor,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(15))),
+                        height: 133,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Image.asset(
+                              "assets/images/diamond.png",
+                              height: 79,
+                              width: 84,
+                            ),
+                            Text(
+                              "Diamond Saving Plan",
+                              style: TextStyle(
+                                  fontFamily: dMSans,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
             Padding(
               padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
               child: Row(
@@ -289,49 +609,35 @@ class _HomeScreenState extends State<HomeScreen> {
                         );
                       },
                       child: Container(
-                        decoration: const BoxDecoration(
-                            // color: Colors.green,
-                            //  border: Border.all(),
-                            gradient: LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: <Color>[
-                                Color(0xffFEF6DC),
-                                Color(0xffFEE4CC),
-                              ],
-                            ),
+                        decoration: BoxDecoration(
+                            color: greycolor,
                             borderRadius:
                                 BorderRadius.all(Radius.circular(15))),
-                        height: MediaQuery.of(context).size.height * 0.145,
-                        //width: MediaQuery.of(context).size.width / 2.2,
-                        child: Row(
+                        height: 133,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Column(
-                                children: [
-                                  const Text(
-                                    "Gold",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 14),
-                                  ),
-                                ],
-                              ),
-                            ),
                             Image.asset(
-                              "assets/images/gold.png",
-                              height: size.height / 13,
-                              width: size.width / 5,
-                            )
+                              "assets/images/goldbar.png",
+                              height: 79,
+                              width: 84,
+                            ),
+                            Text(
+                              "Gold Coin & bars\nSaving Plan",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontFamily: dMSans,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14),
+                            ),
                           ],
                         ),
                       ),
                     ),
                   ),
                   const SizedBox(
-                    width: 10,
+                    width: 18,
                   ),
                   Expanded(
                     child: InkWell(
@@ -340,58 +646,168 @@ class _HomeScreenState extends State<HomeScreen> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => const JewelStoreScreen(
-                                    title: "Diamond",
+                                    title: "Gold",
                                   )),
                         );
                       },
-                      child: Column(
-                        children: [
-                          Container(
-                            decoration: const BoxDecoration(
-                                gradient: LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                  colors: <Color>[
-                                    Color(0xffF3F3F3),
-                                    Color(0xffE5F6FC),
-                                  ],
-                                ),
-                                // color: Colors.red,
-                                //  border: Border.all(),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15))),
-                            height: MediaQuery.of(context).size.height * 0.145,
-                            //width: MediaQuery.of(context).size.width / 2.2,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 20, left: 20),
-                                  child: Column(
-                                    children: [
-                                      const Text(
-                                        "Diamond",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Column(
-                                  children: [
-                                    Image.asset(
-                                      "assets/images/diamond.png",
-                                      height: size.height / 10,
-                                      width: size.width / 5,
-                                    ),
-                                  ],
-                                )
-                              ],
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: greycolor,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(15))),
+                        height: 133,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Image.asset(
+                              "assets/images/platinum.png",
+                              height: 79,
+                              width: 84,
                             ),
-                          ),
-                        ],
+                            Text(
+                              "Silver Saving Plan",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontFamily: dMSans,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              "Brands we love.",
+              style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: berkshireSwash),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15),
+                    child: Container(
+                      height: 209,
+                      width: 190.59,
+                      decoration: BoxDecoration(
+                          color: greygreen,
+                          borderRadius: BorderRadius.circular(16)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(16),
+                              child: Image.asset(
+                                "assets/images/lalitha.jpg",
+                                height: 99.63,
+                                width: 175.43,
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Text(
+                                    "Flexi O Flexi",
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w700,
+                                        fontFamily: dMSans),
+                                  ),
+                                  Text(
+                                    ". 100% No V.A. charges!",
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
+                                        fontFamily: dMSans),
+                                  ),
+                                  Text(
+                                    ". 50% off on one month's instalment",
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
+                                        fontFamily: dMSans),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15),
+                    child: Container(
+                      height: 209,
+                      width: 190.59,
+                      decoration: BoxDecoration(
+                          color: greygreen,
+                          borderRadius: BorderRadius.circular(16)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(16),
+                              child: Image.asset(
+                                "assets/images/lalitha.jpg",
+                                height: 99.63,
+                                width: 175.43,
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Text(
+                                    "Flexi O Flexi",
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w700,
+                                        fontFamily: dMSans),
+                                  ),
+                                  Text(
+                                    ". 100% No V.A. charges!",
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
+                                        fontFamily: dMSans),
+                                  ),
+                                  Text(
+                                    ". 50% off on one month's instalment",
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
+                                        fontFamily: dMSans),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -399,358 +815,155 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(
-                  top: 10, left: 15, right: 15, bottom: 15),
-              child: IntrinsicHeight(
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ToggleButton()),
-                          );
-                        },
-                        child: Container(
-                          decoration: const BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                                colors: <Color>[
-                                  Color(0xffFFEFEB),
-                                  Color(0xffF1EEFF),
-                                ],
-                              ),
-                              //  border: Border.all(),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15))),
-                          //height: MediaQuery.of(context).size.height * 0.11,
-                          //width: MediaQuery.of(context).size.width / 2.2,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              padding: const EdgeInsets.only(bottom: 20),
+              child: Stack(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Image.asset(
+                      "assets/images/banner.png",
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  Positioned.fill(
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: <Color>[
+                              Color(0xffFB7D29),
+                              Color(0xffFF682E),
+                            ],
+                          ),
+                        ),
+                        height: 45,
+                        width: 300,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 10, right: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 15, top: 15),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      "Platinum",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 14),
-                                    ),
-                                  ],
-                                ),
+                              Text(
+                                "Explore Now",
+                                style: TextStyle(
+                                    fontFamily: dMSans,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 16),
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Image.asset(
-                                    "assets/images/platinum.png",
-                                  ),
-                                ],
+                              Container(
+                                height: 34,
+                                width: 34,
+                                decoration: BoxDecoration(
+                                    color: Colors.white30,
+                                    borderRadius: BorderRadius.circular(9)),
+                                child: Center(
+                                  child: Icon(Icons.keyboard_arrow_down),
+                                ),
                               )
                             ],
                           ),
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                        child: Container(
-                      decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: <Color>[
-                              Color(0xffE5E2FD),
-                              Color(0xffF1BDDE),
-                            ],
-                          ), //  border: Border.all(),
-                          borderRadius: BorderRadius.all(Radius.circular(15))),
-                      //height: MediaQuery.of(context).size.height * 0.11,
-                      //width: MediaQuery.of(context).size.width / 2.2,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15, top: 15),
-                            child: Row(
-                              children: [
-                                Text(
-                                  "Silver",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Image.asset("assets/images/silver.png"),
-                            ],
-                          )
-                        ],
-                      ),
-                    )),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                      child: Container(
-                        decoration: const BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: <Color>[
-                                Color(0xffFEEADC),
-                                Color(0xffFFE8F5),
-                              ],
-                            ), //  border: Border.all(),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15))),
-                        // height: MediaQuery.of(context).size.height * 0.11,
-                        //width: MediaQuery.of(context).size.width / 2.2,
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Stack(
+                children: [
+                  SizedBox(
+                    height: 290,
+                    width: MediaQuery.of(context).size.width,
+                    child: Card(
+                      elevation: 5,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 15, top: 15),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    "Gold Coin",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15),
-                                  ),
-                                ],
-                              ),
+                            Text(
+                              "Refer and earn",
+                              style: TextStyle(
+                                  fontFamily: dMSans,
+                                  color: maincolor,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 20),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 5),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Image.asset("assets/images/gold_coin.png"),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: IntrinsicHeight(
-                child: Row(
-                  children: [
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    Container(
-                      decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: <Color>[
-                              Color(0xffBB558B),
-                              Color(0xffE86D6D),
-                            ],
-                          ), //  border: Border.all(),
-                          borderRadius: BorderRadius.all(Radius.circular(15))),
-                      //   height: MediaQuery.of(context).size.height * 0.21,
-                      width: MediaQuery.of(context).size.width / 2,
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 15, top: 15, bottom: 15),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                            Text(
+                              "Invite your friends to zeed and\nget free Gold upto 500",
+                              style: TextStyle(
+                                  wordSpacing: 1.5,
+                                  fontFamily: dMSans,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 12),
+                              textAlign: TextAlign.center,
+                            ),
+                            Image.asset("assets/images/refer.png"),
                             Container(
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: Color.fromARGB(255, 185, 99, 145),
+                                borderRadius: BorderRadius.circular(10),
+                                gradient: LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  colors: <Color>[
+                                    Color(0xffFB7D29),
+                                    Color(0xffFF682E),
+                                  ],
+                                ),
                               ),
+                              height: 45,
+                              width: 300,
                               child: Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 10, right: 10, top: 5, bottom: 5),
-                                child: Text(
-                                  "Offer zone",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w500),
+                                padding:
+                                    const EdgeInsets.only(left: 10, right: 10),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Invite Now",
+                                      style: TextStyle(
+                                          fontFamily: dMSans,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 16),
+                                    ),
+                                    Container(
+                                      height: 34,
+                                      width: 34,
+                                      decoration: BoxDecoration(
+                                          color: Colors.white30,
+                                          borderRadius:
+                                              BorderRadius.circular(9)),
+                                      child: Center(
+                                        child:
+                                            Image.asset("assets/icons/wa.png"),
+                                      ),
+                                    )
+                                  ],
                                 ),
                               ),
                             ),
-                            FittedBox(
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "Flat",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                      Text(
-                                        "10% off",
-                                        style: TextStyle(
-                                            fontSize: 25,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white),
-                                      ),
-                                      Text(
-                                        "Savings plan",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                      Text(
-                                        "starts from",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                    ],
-                                  ),
-                                  Image.asset(
-                                    "assets/images/platinum.png",
-                                    fit: BoxFit.fitHeight,
-                                    height: 100,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Text(
-                              "*conditions apply",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500),
-                            ),
                           ],
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                      decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: <Color>[
-                              Color(0xff5570BB),
-                              Color(0xff452797),
-                            ],
-                          ), //  border: Border.all(),
-                          borderRadius: BorderRadius.all(Radius.circular(15))),
-                      // height: MediaQuery.of(context).size.height * 0.21,
-                      width: MediaQuery.of(context).size.width / 2,
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 15, top: 15, bottom: 15),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: Color.fromARGB(255, 185, 99, 145),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 10, right: 10, top: 5, bottom: 5),
-                                child: Text(
-                                  "Savings",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                              ),
-                            ),
-                            FittedBox(
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "Savings plan",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                      Text(
-                                        "starts from",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                      Text(
-                                        "500/-",
-                                        style: TextStyle(
-                                            fontSize: 25,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white),
-                                      ),
-                                    ],
-                                  ),
-                                  Image.asset(
-                                    "assets/images/silver_necklece.png",
-                                    fit: BoxFit.fitHeight,
-                                    //   height: 100,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Text(
-                              "*conditions apply",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                  Positioned(
+                    right: 20,
+                    top: 30,
+                    child: Image.asset("assets/icons/help.png"),
+                  ),
+                ],
               ),
             ),
           ],
