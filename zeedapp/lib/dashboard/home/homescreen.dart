@@ -714,7 +714,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ClipRRect(
                               borderRadius: BorderRadius.circular(16),
                               child: Image.asset(
-                                "assets/images/lalitha.jpg",
+                                "assets/images/lalitha.png",
                                 height: 99.63,
                                 width: 175.43,
                                 fit: BoxFit.fill,
@@ -770,7 +770,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ClipRRect(
                               borderRadius: BorderRadius.circular(16),
                               child: Image.asset(
-                                "assets/images/lalitha.jpg",
+                                "assets/images/lalitha.png",
                                 height: 99.63,
                                 width: 175.43,
                                 fit: BoxFit.fill,

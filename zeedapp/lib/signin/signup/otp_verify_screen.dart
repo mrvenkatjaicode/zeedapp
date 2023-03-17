@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:zeedapp/dashboard/dashboard_home_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OtpVerifyScreen extends StatefulWidget {
   OtpVerifyScreen(
@@ -33,6 +34,7 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
 
     var result = await auth.signInWithCredential(phoneauthcredential);
     if (phoneauthcredential.smsCode == otp) {
+      addStringToSF();
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const DashboardHomeScreen()),
@@ -46,6 +48,11 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
       );
     }
     debugPrint(result.toString());
+  }
+
+  addStringToSF() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('stringValue', "abc");
   }
 
   @override

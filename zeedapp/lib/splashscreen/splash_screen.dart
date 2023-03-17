@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '../dashboard/dashboard_home_screen.dart';
 import '../welcomescreen/welcome_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -12,18 +14,27 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    getStringValuesSF();
+  }
 
-   @override  
-  void initState() {  
-    super.initState();  
-    Timer(const Duration(seconds: 2),  
-            ()=>Navigator.pushReplacement(context,  
-            MaterialPageRoute(builder:  
-                (context) => const WelcomeScreen()  
-            )  
-         )  
-    );  
-  }  
+  getStringValuesSF() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //Return String
+    String stringValue = prefs.getString('stringValue').toString();
+    Timer(const Duration(seconds: 2), () {
+      stringValue == "abc"
+          ? Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const DashboardHomeScreen()))
+          : Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => const WelcomeScreen()));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

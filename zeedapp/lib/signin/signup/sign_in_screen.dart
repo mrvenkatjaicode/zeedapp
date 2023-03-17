@@ -186,7 +186,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             width: MediaQuery.of(context).size.width,
                             child: ElevatedButton(
                                 onPressed: () {
-                                  sendotp(countrycode + mobilecontroller.text);
+                                  sendotp("+91${mobilecontroller.text}");
                                   /* Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -196,26 +196,26 @@ class _SignInScreenState extends State<SignInScreen> {
                                 },
                                 child: const Text("Get OTP")),
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const RegisterScreen()),
-                              );
-                            },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Text("New user? "),
-                                Text(
-                                  " Sign Up",
-                                  style: TextStyle(color: Colors.deepOrange),
-                                ),
-                              ],
-                            ),
-                          )
+                          // GestureDetector(
+                          //   onTap: () {
+                          //     Navigator.push(
+                          //       context,
+                          //       MaterialPageRoute(
+                          //           builder: (context) =>
+                          //               const RegisterScreen()),
+                          //     );
+                          //   },
+                          //   child: Row(
+                          //     mainAxisAlignment: MainAxisAlignment.center,
+                          //     children: const [
+                          //       Text("New user? "),
+                          //       Text(
+                          //         " Sign Up",
+                          //         style: TextStyle(color: Colors.deepOrange),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // )
                         ],
                       ),
                     ),
