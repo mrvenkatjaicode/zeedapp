@@ -47,6 +47,7 @@ dependencies:
   carousel_indicator: ^1.0.6
   sizer: ^2.0.15
   shared_preferences: ^2.0.18
+  video_player: ^2.6.0
 
 dev_dependencies:
   flutter_test:
@@ -74,6 +75,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/videos/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

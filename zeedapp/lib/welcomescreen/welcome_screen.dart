@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:zeedapp/signin/signup/sign_in_screen.dart';
 import 'package:sizer/sizer.dart';
+import 'package:video_player/video_player.dart';
+
+import '../const/constant.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -10,6 +13,29 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
+  VideoPlayerController? _controller;
+  @override
+  void initState() {
+    super.initState();
+    startvideo();
+  }
+
+  startvideo() {
+    _controller = VideoPlayerController.asset("assets/videos/welcome.mp4");
+    _controller!.addListener(() {
+      setState(() {});
+    });
+    _controller!.setVolume(0);
+    // _controller!.setPlaybackSpeed(0.2);
+    _controller!.setLooping(true);
+    _controller!.initialize().then((value) {
+      setState(() {});
+    });
+    _controller!.play();
+    // Ensure the first frame is shown after the video is initialized
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -17,11 +43,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          Image.asset(
-            "assets/images/bangle.jpg",
-            height: MediaQuery.of(context).size.height,
-            fit: BoxFit.fitHeight,
-          ),
+          SizedBox(
+              width: size.width,
+              height: size.height,
+              child: VideoPlayer(_controller!)),
           Positioned(
               bottom: 0,
               child: Container(
@@ -86,19 +111,39 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       const SizedBox(
                         height: 15,
                       ),
-                      SizedBox(
-                        height: 50,
-                        width: MediaQuery.of(context).size.width,
-                        child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const SignInScreen()),
-                              );
-                            },
-                            child: const Text("Get Started")),
-                      )
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const SignInScreen()));
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: <Color>[
+                                Color(0xffFB7D29),
+                                Color(0xffFF682E),
+                              ],
+                            ),
+                          ),
+                          height: 50,
+                          width: MediaQuery.of(context).size.width,
+                          child: Center(
+                            child: Text(
+                              "Get Started",
+                              style: TextStyle(
+                                  fontFamily: dMSans,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 16),
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),

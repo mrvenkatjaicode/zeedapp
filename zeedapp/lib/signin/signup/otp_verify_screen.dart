@@ -76,7 +76,7 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.asset(
-              "assets/images/images.png",
+              "assets/images/app_icon.png",
               height: 50,
               width: 50,
             ),
@@ -150,10 +150,10 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
   Widget _textFieldOTP({bool? first, last, controller}) {
     return Container(
       margin: const EdgeInsets.only(top: 20),
-      height: 50,
+      height: 60,
       child: AspectRatio(
-        aspectRatio: 1.0,
-        child: TextField(
+        aspectRatio: 0.9,
+        child: TextFormField(
           controller: controller,
           autofocus: true,
           onChanged: (value) {

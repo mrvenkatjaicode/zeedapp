@@ -18,7 +18,9 @@ class _DashboardHomeScreenState extends State<DashboardHomeScreen> {
     StoresHomeScreen(),
     MyPlansHomeScreen(),
     const Text('Gift Cards'),
-    const Text('Redeem'),
+    Container(
+      child: Image.asset("assets/images/reedem.gif"),
+    ),
   ];
   @override
   Widget build(BuildContext context) {

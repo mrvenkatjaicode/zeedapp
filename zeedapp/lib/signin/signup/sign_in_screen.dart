@@ -141,7 +141,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                   flex: 3,
                                   child: Padding(
                                     padding: const EdgeInsets.only(
-                                        top: 8, bottom: 0, right: 8, left: 10),
+                                        right: 8, left: 10),
                                     child: TextFormField(
                                       controller: mobilecontroller,
                                       keyboardType: TextInputType.phone,
